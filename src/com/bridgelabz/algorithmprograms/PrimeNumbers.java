@@ -1,29 +1,50 @@
 package com.bridgelabz.algorithmprograms;
 
+import java.util.ArrayList;
+
 public class PrimeNumbers {
 
-	public static void main(String[] args) {
-
-		int lowerBound = 0;
-		int upperBound = 1000;
-		int flag;
-
-		System.out.println("Prime numbers between "+lowerBound+" and "+upperBound+" are: ");
+	public static boolean isPrime(int number) {
 		
-		for (int iterator = lowerBound; iterator <= upperBound; iterator++) {
-			if (iterator == 1 || iterator == 0)
-				continue;
-			flag = 1;
+		boolean isPrimeNumber = true;
 
-			for (int jIterator = 2; jIterator <= iterator / 2; jIterator++) {
-				
-				if (iterator % jIterator == 0) {
-					flag = 0;
+		if (number <= 1) {
+			isPrimeNumber = false;
+		} 
+		else if (number == 2) {
+			isPrimeNumber = true;
+		} 
+		else if (number % 2 == 0) {
+			isPrimeNumber = false;
+		} 
+		else {
+			for (int i = 3; i <= Math.sqrt(number); i += 2) {
+				if (number % i == 0) {
+					isPrimeNumber = false;
 					break;
 				}
 			}
-			if (flag == 1)
-				System.out.print(iterator + " ");
+		}
+		return isPrimeNumber;
+	}
+	
+	public static ArrayList<Integer> findPrimeNumbers(int lowerBound, int upperBound) {
+		ArrayList<Integer> primeNumberList = new ArrayList<Integer>();
+		for (int number = lowerBound; number <= upperBound; number++) {
+			if(isPrime(number)) {
+				primeNumberList.add(number);
+			}
+		}
+		return primeNumberList;
+	}
+
+	public static void main(String[] args) {
+		
+		int lowerBound = 0;
+		int upperBound = 1000;
+		ArrayList<Integer> listOfPrime = findPrimeNumbers(lowerBound, upperBound);
+		for (Integer primeNumber : listOfPrime) {
+			System.out.print(primeNumber+" ");
 		}
 	}
-}
+} 
