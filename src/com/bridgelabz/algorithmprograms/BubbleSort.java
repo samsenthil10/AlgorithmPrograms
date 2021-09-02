@@ -3,43 +3,40 @@ package com.bridgelabz.algorithmprograms;
 import java.util.Scanner;
 
 public class BubbleSort {
-
-	public static int[] bubbleSort(int arrayOfIntegers[],int size) {
-
+	
+	public static<E extends Comparable<E>> void bubbleSort(E arrayOfIntegers[],int size) {
 		for(int index1=0;index1<size;index1++) {
 			for(int index2=0;index2<size;index2++) {
-				if(arrayOfIntegers[index2]>arrayOfIntegers[index1]) {
-					int temp=arrayOfIntegers[index2];
+				if(arrayOfIntegers[index2].compareTo(arrayOfIntegers[index1])>0) {
+					E temp=arrayOfIntegers[index2];
 					arrayOfIntegers[index2]=arrayOfIntegers[index1];
 					arrayOfIntegers[index1]=temp;
 				}
 			}
 		}
-		return arrayOfIntegers;
 	}
 
 	public static void main(String[] args) {
-
+		
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter size of array: ");
 		int size=scanner.nextInt();
-		scanner.nextLine();
-		int arrayOfIntegers[]= new int[size];
+		Integer arrayOfIntegers[]= new Integer[size];
 		System.out.print("Enter "+size+" number of elements: ");
 		for(int index=0;index<size;index++) {
 			arrayOfIntegers[index]=scanner.nextInt();
 		}
-		scanner.close();
-		System.out.print("Before sorting: ");
+		System.out.print("Before sorting, the integers are :");
 		for(int index=0;index<size;index++) {
 			System.out.print(arrayOfIntegers[index]+" ");
 		}
 		System.out.println();
-		arrayOfIntegers=bubbleSort(arrayOfIntegers,size);
+		bubbleSort(arrayOfIntegers,size);
 
-		System.out.print("After sorting: ");
+		System.out.print("After sorting, the integers are :");
 		for(int index=0;index<size;index++) {
 			System.out.print(arrayOfIntegers[index]+" ");
 		}
+		scanner.close();
 	}
 }
